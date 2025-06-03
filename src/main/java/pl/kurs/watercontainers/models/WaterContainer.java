@@ -1,5 +1,7 @@
 package pl.kurs.watercontainers.models;
 
+import pl.kurs.watercontainers.exceptions.InvalidWaterAmountException;
+
 import java.util.Objects;
 
 public class WaterContainer {
@@ -11,6 +13,16 @@ public class WaterContainer {
         this.name = name;
         this.maxCapacity = maxCapacity;
         this.waterLevel = waterLevel;
+    }
+
+    public void addWater(double value) {
+        if (value <= 0) {
+            throw new InvalidWaterAmountException("Value should by more than 0");
+        }
+        if (waterLevel + value > maxCapacity) {
+            throw new InvalidWaterAmountException("Too much water to add");
+        }
+        waterLevel += value;
     }
 
     public String getName() {
