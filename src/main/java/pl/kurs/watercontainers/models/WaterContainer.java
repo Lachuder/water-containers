@@ -25,26 +25,41 @@ public class WaterContainer {
         waterLevel += value;
     }
 
+    public void subtractWater(double value) {
+        if (value <= 0) {
+            throw new InvalidWaterAmountException("Value should be more than 0");
+        }
+        if (waterLevel - value < 0) {
+            throw new InvalidWaterAmountException("Too much water to subtract");
+        }
+        waterLevel -= value;
+    }
+    public void pourWater(WaterContainer destinationContainer, double value) {
+        if (destinationContainer == null) {
+            throw new IllegalArgumentException("Destination container can not be null");
+        }
+        if (value <= 0) {
+            throw new InvalidWaterAmountException("Valude should be more than 0");
+        }
+        this.subtractWater(value);
+        destinationContainer.addWater(value);
+    }
+
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public double getMaxCapacity() {
         return maxCapacity;
     }
-
     public void setMaxCapacity(double maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
-
     public double getWaterLevel() {
         return waterLevel;
     }
-
     public void setWaterLevel(double waterLevel) {
         this.waterLevel = waterLevel;
     }
@@ -56,7 +71,6 @@ public class WaterContainer {
         WaterContainer that = (WaterContainer) o;
         return Double.compare(maxCapacity, that.maxCapacity) == 0 && Double.compare(waterLevel, that.waterLevel) == 0 && Objects.equals(name, that.name);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(name, maxCapacity, waterLevel);
