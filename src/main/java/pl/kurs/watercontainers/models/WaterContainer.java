@@ -2,9 +2,11 @@ package pl.kurs.watercontainers.models;
 
 import pl.kurs.watercontainers.exceptions.InvalidWaterAmountException;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class WaterContainer {
+public class WaterContainer implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private double maxCapacity;
     private double waterLevel;
