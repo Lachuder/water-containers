@@ -21,4 +21,12 @@ public class WaterContainerService {
         return max;
     }
 
+    public static Optional<WaterContainer> findMostFilledContainer(List<WaterContainer> containerList) {
+        Optional<WaterContainer> max = Optional.ofNullable(containerList)
+                .orElseGet(Collections::emptyList)
+                .stream()
+                .max(Comparator.comparingDouble(x -> x.getWaterLevel() / x.getMaxCapacity()));
+        return max;
+    }
+
 }
