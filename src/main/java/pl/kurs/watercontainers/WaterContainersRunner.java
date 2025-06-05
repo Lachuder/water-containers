@@ -25,6 +25,10 @@ public class WaterContainersRunner {
 
         System.out.println("containerWithBiggestUsedCapacity = " + containerWithBiggestUsedCapacity);
 
+        List<WaterContainer> allEmptyContainers = WaterContainerService.findAllEmptyContainers(waterContainerList);
+
+        System.out.println("allEmptyContainers = " + allEmptyContainers);
+
         waterContainer1.addWater(90);
         waterContainer2.subtractWater(45);
 
