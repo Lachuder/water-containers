@@ -22,8 +22,7 @@ public class WaterContainer implements Serializable {
             System.out.println("Value should by more than 0");
             return false;
         }
-        if (waterLevel + value > maxCapacity) {
-            System.out.println("Too much water to add");
+        if (!addIsPossible(value)) {
             return false;
         }
         waterLevel += value;
@@ -35,8 +34,7 @@ public class WaterContainer implements Serializable {
             System.out.println("Value should be more than 0");
             return false;
         }
-        if (waterLevel - value < 0) {
-            System.out.println("Too much water to subtract");
+        if (!subtractIsPossible(value)) {
             return false;
         }
         waterLevel -= value;
@@ -52,8 +50,29 @@ public class WaterContainer implements Serializable {
             System.out.println("Valude should be more than 0");
             return false;
         }
-        return this.subtractWater(value) && destinationContainer.addWater(value);
+        if (!this.subtractIsPossible(value) || !destinationContainer.addIsPossible(value)) {
+            return false;
+        }
+        boolean operation1 = this.subtractWater(value);
+        boolean operation2 = destinationContainer.addWater(value);
+        return operation1 && operation2;
 
+    }
+
+    private boolean subtractIsPossible(double value) {
+        if (waterLevel - value < 0) {
+            System.out.println("Too much water to subtract");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean addIsPossible(double value) {
+        if (waterLevel + value > maxCapacity) {
+            System.out.println("Too much water to add");
+            return false;
+        }
+        return true;
     }
 
     public String getName() {
