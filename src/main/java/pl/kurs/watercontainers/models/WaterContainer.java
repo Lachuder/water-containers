@@ -52,9 +52,7 @@ public class WaterContainer implements Serializable {
             System.out.println("Valude should be more than 0");
             return false;
         }
-        boolean operation1 = this.subtractWater(value);
-        boolean operation2 = destinationContainer.addWater(value);
-        return operation1 && operation2;
+        return this.subtractWater(value) && destinationContainer.addWater(value);
 
     }
 
