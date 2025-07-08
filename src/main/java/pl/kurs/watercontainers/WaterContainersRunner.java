@@ -11,11 +11,11 @@ public class WaterContainersRunner {
     public static void main(String[] args) {
 
 
-        WaterContainer waterContainer1 = new WaterContainer("Beczka", 100, 0);
-        WaterContainer waterContainer2 = new WaterContainer("Zbiornik", 1000, 50);
-        WaterContainer waterContainer3 = new WaterContainer("Mauser", 10_000, 60);
+        WaterContainer beczka = new WaterContainer("Beczka", 100, 0);
+        WaterContainer zbiornik = new WaterContainer("Zbiornik", 1000, 50);
+        WaterContainer mauser = new WaterContainer("Mauser", 10_000, 60);
 
-        List<WaterContainer> waterContainerList = List.of(waterContainer1, waterContainer2, waterContainer3);
+        List<WaterContainer> waterContainerList = List.of(beczka, zbiornik, mauser);
 
         Optional<WaterContainer> containerWithBiggestAmountOfWater = WaterContainerService.findContainerWithBiggestAmountOfWater(waterContainerList);
 
@@ -29,10 +29,10 @@ public class WaterContainersRunner {
 
         System.out.println("allEmptyContainers = " + allEmptyContainers);
 
-        waterContainer1.addWater(90);
-        waterContainer2.subtractWater(45);
+//        beczka.addWater(90);
+//        zbiornik.subtractWater(45);
 
-
+        beczka.pourWater(zbiornik, 10);
 
     }
 
