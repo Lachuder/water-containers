@@ -1,8 +1,11 @@
 package pl.kurs.watercontainers.models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Car {
+public class Car implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String name;
     private String model;
