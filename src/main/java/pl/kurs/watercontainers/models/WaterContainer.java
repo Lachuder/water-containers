@@ -54,21 +54,23 @@ public class WaterContainer implements Serializable {
     }
 
     public boolean pourWater(WaterContainer destinationContainer, double value) {
+        boolean success;
         if (destinationContainer == null) {
             System.out.println("Destination container can not be null");
-            return false;
+            success = false;
         }
         if (value <= 0) {
             System.out.println("Value should be more than 0");
-            return false;
+            success = false;
         }
         if (!this.subtractIsPossible(value) || !destinationContainer.addIsPossible(value)) {
-            return false;
+            success = false;
         }
+
         boolean operation1 = this.subtractWater(value);
         boolean operation2 = destinationContainer.addWater(value);
-        return operation1 && operation2;
-
+        success = operation1 && operation2;
+        return success;
     }
 
     private boolean subtractIsPossible(double value) {
